@@ -38,7 +38,7 @@
 </div>
 </div>
 <div class="contactForm">
-<form action="javascript:sendmail()" method="POST" id="form" >
+<form onsubmit="sendmail(); reset()" method="POST" id="form" >
 <h2>Send Message</h2>
 <div class="inputBox">
 <input type="text" name="Name" id="Name" required="required">
@@ -76,7 +76,7 @@
     
 			var name = $('#Name').val();
 			var email = $('#Sender').val();
-            var message = $('#Message').val();
+                        var message = $('#Message').val();
 
 			// var body = $('#body').val();
 
@@ -84,9 +84,9 @@
 			//console.log(name, phone, email, message);
 
 			Email.send({
-                SecureToken:"3edbdefe-07de-43b7-bdbb-0b44ac661f26",
+                SecureToken:"425a42cc-0ee2-468d-a46a-c86033f0bf3b",
 				To: "shaikmohammad9097@gmail.com",
-				From: "munwarshaik351@gmail.com",
+				From: email,
 				Subject: "New message on Contact Us from "+name,
 				Body: Body
 			}).then(
