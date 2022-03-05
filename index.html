@@ -64,45 +64,44 @@
 <!-- script starts -->
 
 <!--this is essential to link this smtp and jquery cdn link-->
-<script
+<!-- <script
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> -->
 <script src="https://smtpjs.com/v3/smtp.js"></script>
  
 <script>  
 
      function sendmail(){
     
-			var name = $('#Name').val();
-			var email = $('#Sender').val();
-                        var message = $('#Message').val();
+			const btn = document.querySelector('button')
+const inputs = document.querySelector('form')
+btn.addEventListener('click', () => {
+
+    const name = (inputs.elements["name"].value).trim()
+    const email = (inputs.elements["email"].value).trim()
+    const msg = (inputs.elements["message"].value.trim())
 
 			// var body = $('#body').val();
 
-			var Body='Name: '+name+'<br>Email: '+email+'<br>Message: '+message;
+			if (!name.length > 0 || !email.length > 0 || !msg.length > 0 ){
+                             alert("All fields are mandatory")
+                                return
+                              }
+				
 			//console.log(name, phone, email, message);
 
 			Email.send({
-                SecureToken:"425a42cc-0ee2-468d-a46a-c86033f0bf3b",
+				Host: smtp.mailtrap.io
+                                Username: 9e4c688fefca4e
+                                Password: a173798875bd3c
+                                SecureToken:"425a42cc-0ee2-468d-a46a-c86033f0bf3b",
 				To: "shaikmohammad9097@gmail.com",
 				From: email,
 				Subject: "New message on Contact Us from "+name,
-				Body: Body
-			}).then(
-				message =>{
-					//console.log (message);
-					if(message=='OK'){
-					alert('Your mail has been send. Thank you for connecting.');
-					}
-					else{
-						console.error (message);
-						alert('There is error at sending message. ')
-						
-					}
-
-				}
-			);
+				Body: :"Name: "+ name + "<br>" +"Phone: "+ phone + "<br>" +"Message: "+ msg 
+    }).then(msg => alert("The email successfully sent"))
+	})
 
 
 
